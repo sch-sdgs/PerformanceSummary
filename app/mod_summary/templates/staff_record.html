@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row top-buffer">
+    <div class="col-md-12">
+        <h1>{{ name }}</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Competency Record
+            </div>
+            <div class="panel-body">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                EQA Summary (Past 2 Years)
+            </div>
+            <div class="panel-body">
+                <p>Participated in {{ sample_count }} EQA samples</p>
+
+                <p>{{ result_count }} of these samples have data in the EQA database</p>
+                {% if result_count > 0 %}
+                <div id="accordion">
+                    {% for result in results %}
+                    <h3>{{ result["SampleStarlimsRef"] }} - {{ result["ResultStatus"] }}</h3>
+                    <div>
+                        <p><strong>Scheme Summary:</strong></p>
+                        <table class="table table-bordered">
+                            <tr>
+                                <td><strong>Scheme</strong></td>
+                                <td>{{ result["SchemeName"] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Submission Date</strong></td>
+                                <td>{{ result["SubmissionDate"] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Result Score</strong></td>
+                                <td>{{ result["ResultScore"] }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Result Comments</strong></td>
+                                <td>{{ result["Scheme_Comment"] }}</td>
+                            </tr>
+                        </table>
+                        <p><strong>The following steps were completed by this individual in StarLims:</strong></p>
+                        <table class="table table-bordered">
+                            {% for event in result["EVENTS"] %}
+                            <tr>
+                                <td>{{ event["TYPE"] }}</td>
+                                <td>{{ event["STEP"] }}</td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </table>
+
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Incidents
+            </div>
+            <div class="panel-body">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#accordion").accordion({
+            collapsible: true,
+            active: false
+        });
+    });
+</script>
+
+{% endblock %}

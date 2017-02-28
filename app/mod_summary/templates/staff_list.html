@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row top-buffer">
+    <div class="col-md-12">
+<h3>The following staff match your search:</h3><br><br>
+        </div>
+    </div>
+<div class="row bttm-buffer">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th>Select Staff Member</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            {% for name in list %}
+            <tr>
+                <td><a href="{{ url_for('summary.staff_summary') }}?staff={{ name }}"  onclick="loading();">{{name}}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}
