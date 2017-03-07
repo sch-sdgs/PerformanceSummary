@@ -1,0 +1,11 @@
+flask
+requests
+flask-wtf
+flask-table
+Flask-SQLAlchemy
+Flask-Login
+Flask-Table
+Jinja2
+Flask-WTF
+suds
+pybedtools
