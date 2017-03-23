@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='PerformanceSummary',
     version='0.0',
-    packages=['performance_summary','app','mod_admin','mod_summary'],
+    packages=['performance_summary','app','app.mod_admin','app.mod_summary'],
     url='',
     license='',
     zip_safe=False,

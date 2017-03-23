@@ -82,6 +82,10 @@ def staff_summary():
     result_count=len(results)
     sample_count=len(unique_samples)
 
+    for result in results:
+        print result
+        if "ResultStatus" not in result:
+            result["ResultStatus"] = "In Progress"
 
     return render_template('staff_record.html',name=staff_name,sample_count=sample_count,result_count = result_count,results = results)
 
